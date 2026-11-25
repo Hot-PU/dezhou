@@ -1,0 +1,53 @@
+# 脚本分析规则（只看企业侧影响，不依赖大模型，可复现、可审计）
+
+# 清单「管控方式」→ 产能压降系数（0-1），用于算减产幅度
+measure_factor:
+  停产: 1.0
+  限产50%: 0.5
+  限产30%: 0.3
+  限产20%: 0.2
+  限产10%: 0.1
+  自主减排: 0.05
+  移动源管控: 0.15
+  正常生产: 0.0
+
+# 影响程度分级：按减产幅度，100% 停产 / ≥50% 大幅限产 / 其余部分限产
+# （对应 src/analyze.py 的 _impact_level，改这里的分界需同步改代码）
+
+# 反制囤货动作库：按影响程度触发，中英文各一份
+playbook:
+  stop:
+    zh:
+      - 立即发函要求供应商书面提交「产能-库存-排程」周报，写明停产工序与可恢复时间
+      - 以《固定源应急减排措施清单》原始条款为依据核对：停产范围仅限清单所列工序，非清单内工序仍应正常供货
+      - 了解同城同行业其他企业的管控措施，评估分单可能性，并同步询价，压缩议价空间
+      - 对已下未发订单要求书面确认交期，逾期按合同违约金条款执行
+      - 拒绝任何以停产为由的涨价/搭售/预付全款要求；如需预付，须以锁量锁价协议+履约担保为条件
+    en:
+      - Send a formal request for a weekly "capacity–inventory–schedule" report naming the stopped processes and recovery date
+      - "Cite the official reduction list: only the listed processes are shut down; all other processes must still be supplied"
+      - Check what other plants in the same city/industry are required to do, evaluate splitting the order, and re-quote to compress price leverage
+      - Require written confirmation of delivery dates for open orders; apply liquidated-damages clauses for misses
+      - Reject price increases, bundling or prepayment demands justified by the shutdown; any prepayment must come with a volume/price-lock agreement and performance guarantee
+  heavy:
+    zh:
+      - 发函要求供应商书面说明受限产线、剩余产能与每日出货能力，避免其按「全厂停产」口径对外解释
+      - 以清单条款反驳：限产 50% 指特定工序的部分生产线，不等于断供，也不构成涨价理由
+      - 要求提供受限期间的排产与发货计划，按周核对实际出货量
+      - 评估同城同行业替代来源，保持随时可切换
+      - 复核合同中的环保限产/不可抗力条款，明确减产时的通知与补偿义务
+    en:
+      - Ask the supplier to state in writing which lines are restricted, remaining capacity and daily shipping capability — do not accept a "whole plant is down" narrative
+      - "Counter with the list text: a 50% cut applies to specific processes and lines, which is neither a supply stop nor grounds for a price increase"
+      - Request the production and shipment plan for the restricted period; reconcile actual shipments weekly
+      - Evaluate alternative sources in the same city/industry so you can switch quickly
+      - Review the environmental-restriction / force-majeure clauses, clarifying notice and compensation duties
+  partial:
+    zh:
+      - 要求供应商提供每日出货记录，防止把货优先压给其他客户
+      - 关注预警是否升级：升级后同一份清单里对应的是更大范围的限产或停产
+      - 了解同城同行业企业是否被列入豁免清单，可作为备选来源
+    en:
+      - Require daily shipment records so stock is not diverted to other customers
+      - "Watch for an alert upgrade: the same list prescribes wider cuts or shutdowns at the next level"
+      - Check whether peers in the same city/industry are on the exemption list as backup sources

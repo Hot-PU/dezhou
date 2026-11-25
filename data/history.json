@@ -1,0 +1,46 @@
+[
+  {
+    "id": "c102519474",
+    "title": "关于终止重污染天气应急响应的通知-重污染应急〔2026〕26号",
+    "url": "https://dzbee.dezhou.gov.cn/n23586430/c102519474/content.html",
+    "publish_date": "2026-11-17",
+    "color": "橙色预警",
+    "level": "Ⅱ",
+    "kind_label": "终止响应",
+    "headline": "应急响应已终止，供应商限产要求解除",
+    "analysis_date": "2026-11-25"
+  },
+  {
+    "id": "c102439365",
+    "title": "关于启动重污染天气Ⅱ级应急响应的通知",
+    "url": "https://dzbee.dezhou.gov.cn/n23586430/c102439365/content.html",
+    "publish_date": "2026-11-08",
+    "color": "橙色预警",
+    "level": "Ⅱ",
+    "kind_label": "启动响应",
+    "headline": "橙色预警（Ⅱ级）响应生效：山东军高过滤材料有限公司 限产 50%，预计持续 3 天",
+    "analysis_date": "2026-11-08"
+  },
+  {
+    "id": "c102424689",
+    "title": "关于终止重污染天气应急响应的通知",
+    "url": "https://dzbee.dezhou.gov.cn/n23586430/c102424689/content.html",
+    "publish_date": "2026-11-05",
+    "color": "橙色预警",
+    "level": "Ⅱ",
+    "kind_label": "终止响应",
+    "headline": "应急响应已终止，供应商限产要求解除",
+    "analysis_date": "2026-11-06"
+  },
+  {
+    "id": "c102386250",
+    "title": "关于启动重污染天气Ⅱ级应急响应的通知-重污染应急〔2026〕23号",
+    "url": "https://dzbee.dezhou.gov.cn/n23586430/c102386250/content.html",
+    "publish_date": "2026-11-02",
+    "color": "橙色预警",
+    "level": "Ⅱ",
+    "kind_label": "启动响应",
+    "headline": "橙色预警Ⅱ级响应生效，山东军高过滤材料有限公司 受管控：限产 50%，预计持续 4 天",
+    "analysis_date": "2026-11-05"
+  }
+]

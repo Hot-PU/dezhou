@@ -1,0 +1,73 @@
+site:
+  name: 德州供应商重污染减产监督台
+  short_name: 减产监督台
+  timezone: Asia/Shanghai
+  repo_note: 每日自动巡检德州市生态环境局「重污染天气信息发布」栏目
+
+source:
+  base_url: https://dzbee.dezhou.gov.cn
+  list_url: https://dzbee.dezhou.gov.cn/n23586430/index.html
+  column_name: 重污染天气信息发布
+  max_pages: 1
+  timeout: 40
+  # 源站访问方式（境外/CI 环境用，详见 DEPLOY.md 第 6 节）
+  # 该站在境外只有 IPv6 出口可达，GitHub runner 没有 IPv6，所以默认走 Cloudflare Worker 中继。
+  # 环境变量 SOURCE_RELAY / SOURCE_PROXY 可覆盖这里的值。
+  relay: https://dezhou.zhenyusun84.workers.dev/?token=dereksun
+  # proxy: http://user:pass@1.2.3.4:3128
+  headers:
+    User-Agent: >-
+      Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)
+      Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0
+    Accept: >-
+      text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+    Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
+    Cache-Control: max-age=0
+    Upgrade-Insecure-Requests: "1"
+
+city:
+  name: 德州市
+  province: 山东省
+  lat: 37.4355
+  lon: 116.3594
+
+aqi:
+  # WAQI 官方 token；可用环境变量 WAQI_TOKEN 覆盖（CI 中建议放 Secrets）
+  waqi_token: 897271cb3cb09f3af347cb5dcfbf30c992d35d1f
+  waqi_city: dezhou
+
+output:
+  docs_dir: docs
+  data_dir: data
+
+ai:
+  # auto: 有 AI_API_KEY 就调用大模型，没有就用规则引擎生成同等结构的总结
+  mode: auto
+  base_url: https://api.openai.com/v1
+  model: gpt-4o-mini
+  temperature: 0.3
+  max_tokens: 2600
+  timeout: 90
+
+analysis:
+  # 公告未更新时不做新分析，沿用上一次总结，仅更新时间戳
+  reuse_when_unchanged: true
+  # 默认响应持续天数（公告未写明终止时间时使用）
+  default_duration_days: 5
+
+# 区域联动：德州按京津冀及周边区域联防联控启动/解除，只看本地风速不够
+region:
+  enabled: true
+  # 城市清单与阈值写死在 src/region.py（CITIES / HOT / CLEAN / TREND_STEP），
+  # 这里只控制开关；关闭后预测仅使用本地扩散条件修正。
+
+# 北京官方预警信息：把北京每一次空气重污染预警当作独立信息源，
+# 与德州本次响应做时间重叠比对（北京先解除 = 德州解除临近）。
+beijing:
+  enabled: true
+  url: https://yjglj.beijing.gov.cn/col/col2472/index.html
+  timeout: 45
+  # 该站通常可直连；境外/CI 环境不通时，用 BEIJING_RELAY（Cloudflare Worker）
+  # 或 BEIJING_PROXY 覆盖，写法与 source.relay / source.proxy 一致。
+  # relay: https://your-worker.workers.dev/?token=xxx
+  # proxy: http://user:pass@1.2.3.4:3128

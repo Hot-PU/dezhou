@@ -1,0 +1,41 @@
+# 邮件通知配置（正文为英文，便于跨团队/海外同事阅读）
+#
+# 发信规则：
+#   - 仅在「启动 / 升级响应」与「终止响应」两类公告时发送
+#   - 同一条公告只发一次（去重记录 data/notify_log.json，随仓库提交）
+#   - 「公告未更新」不发送，页面照常更新数据
+#
+# 密钥不要写在这里：密码放 GitHub Secrets（默认读环境变量 SMTP_PASSWORD）
+
+email:
+  enabled: true
+
+  # SMTP 服务
+  smtp_host: smtp.yeah.net
+  smtp_port: 465
+  smtp_security: ssl           # ssl | starttls | none
+  username: mhpubot@yeah.net
+  password_env: SMTP_PASSWORD  # 环境变量名，值填在 GitHub Secrets / 本地环境
+
+  # 发件人 / 收件人（收件人可多个）
+  # 注意：发件人地址必须和 smtp 登录账号一致，否则 yeah/163 会拒投或判垃圾邮件。
+  # 如需自定义显示地址，用 GitHub Secret 的 SMTP_FROM 覆盖（同样要能通过发件服务器的 SPF）。
+  from: "Dezhou Supplier Watch <mhpubot@yeah.net>"
+  to:
+    - Packy@mann-hummel.com
+
+  subject_prefix: "[Supplier Watch]"
+
+  # 邮件里是否放原文链接按钮。企业邮件网关常把带外链的邮件判为可疑
+  # （政府站点链接尤其容易进隔离区），排查“显示已发送但收不到”时先改 false。
+  include_links: false
+
+  # 触发条件：只保留启动与终止，避免打扰
+  send_on:
+    startup: true      # 启动 / 升级响应
+    terminate: true    # 终止响应
+    unchanged: false   # 公告未更新（沿用上次分析）不发；改 true 时同一公告最多补发一次（按公告 id 去重）
+
+  # 调试用：只渲染并落盘预览，不真正投递。
+  # 配好 SMTP 与收件人后改成 false 即开始真实发送。
+  dry_run: false

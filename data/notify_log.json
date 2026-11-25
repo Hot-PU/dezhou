@@ -1,0 +1,26 @@
+{
+  "sent": {
+    "c102424689": {
+      "kind": "terminate",
+      "sent_at": "2026-11-06T10:35:42+08:00",
+      "subject": "[Supplier Watch] Orange alert lifted — response terminated in Dezhou"
+    },
+    "c102439365": {
+      "kind": "startup",
+      "sent_at": "2026-11-08T20:08:01+08:00",
+      "subject": "[Supplier Watch] Orange alert Ⅱ级 response started — 山东军高过滤材料有限公司 cut 50%"
+    },
+    "c102519474": {
+      "kind": "terminate",
+      "sent_at": "2026-11-17T13:08:55+08:00",
+      "subject": "[Supplier Watch] Orange alert lifted — response terminated in Dezhou"
+    }
+  },
+  "last_notice_id": "c102519474",
+  "last_kind": "terminate",
+  "sent_at": "2026-11-17T13:08:55+08:00",
+  "subject": "[Supplier Watch] Orange alert lifted — response terminated in Dezhou",
+  "to": [
+    "Packy@mann-hummel.com"
+  ]
+}

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#ffffff" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<title>Dezhou Heavy-Pollution Supplier Monitoring</title>
+<link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://unpkg.com" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="./style.css?v=1795593418" />
+<link rel="stylesheet" href="./app-shell.css" />
+</head>
+<body>
+
+<svg class="icon-sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></symbol>
+  <symbol id="i-wind" viewBox="0 0 24 24"><path d="M3 8h10a3 3 0 1 0-3-3"/><path d="M3 12h14a3 3 0 1 1-3 3"/><path d="M3 16h7"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18a9 9 0 1 1 16 0"/><path d="M12 14l4-4"/><circle cx="12" cy="14" r="1.4"/></symbol>
+  <symbol id="i-activity" viewBox="0 0 24 24"><path d="M3 12h4l3 7 4-14 3 7h4"/></symbol>
+  <symbol id="i-bars" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V6l8-3 8 3v15"/><path d="M2 21h20"/><path d="M9 9h1M14 9h1M9 13h1M14 13h1M9 17h1M14 17h1"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.5 21 19.5H3z"/><path d="M12 9v4.5M12 16.6v.1"/></symbol>
+  <symbol id="i-percent" viewBox="0 0 24 24"><path d="M19 5 5 19"/><circle cx="7.5" cy="7.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3.2 2"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17"/><path d="m9.5 15 1.8 1.8 3.4-3.4"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.4 8.4-8 9-4.6-.6-8-4-8-9V6z"/><path d="m8.8 12 2.2 2.2 4.2-4.2"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13.5a4 4 0 0 0 5.7 0l2.6-2.6a4 4 0 0 0-5.7-5.7l-1.3 1.3"/><path d="M14 10.5a4 4 0 0 0-5.7 0l-2.6 2.6a4 4 0 0 0 5.7 5.7l1.3-1.3"/></symbol>
+</svg>
+
+<div class="app">
+
+  <!-- 桌面端：左侧边栏 -->
+  <aside class="rail">
+    <div class="rail-brand">
+      <div class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor"
+             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 8h11a3 3 0 1 0-3-3"/><path d="M3 12h15a3 3 0 1 1-3 3"/><path d="M3 16h7"/>
+        </svg>
+      </div>
+      <div class="rail-title">
+        <b data-i18n="site.title">德州供应商监测</b>
+      </div>
+    </div>
+
+    <nav class="rail-nav" aria-label="sections">
+      <button type="button" class="nav-item" data-view="overview">
+        <svg class="i"><use href="#i-building"></use></svg><span data-i18n="toc.now">概览</span>
+      </button>
+      <button type="button" class="nav-item" data-view="trend">
+        <svg class="i"><use href="#i-activity"></use></svg><span data-i18n="toc.trend">趋势</span>
+      </button>
+      <button type="button" class="nav-item" data-view="impact">
+        <svg class="i"><use href="#i-list"></use></svg><span data-i18n="toc.impact">供应影响</span>
+      </button>
+      <button type="button" class="nav-item" data-view="basis">
+        <svg class="i"><use href="#i-link"></use></svg><span data-i18n="toc.basis">数据依据</span>
+      </button>
+    </nav>
+
+    <div class="rail-foot">
+      <div class="lang-switch" role="group" aria-label="language">
+        <button type="button" data-lang="zh" aria-pressed="false">中文</button>
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      </div>
+      <div class="rail-meta" id="railMeta"></div>
+    </div>
+  </aside>
+
+  <div class="app-body">
+    <!-- 手机端：顶部 AppBar -->
+    <header class="appbar">
+      <div class="appbar-brand">
+        <div class="mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 8h11a3 3 0 1 0-3-3"/><path d="M3 12h15a3 3 0 1 1-3 3"/><path d="M3 16h7"/>
+          </svg>
+        </div>
+        <span class="appbar-title" id="appbarTitle" data-i18n="toc.now">概览</span>
+      </div>
+      <div class="lang-switch" role="group" aria-label="language">
+        <button type="button" data-lang="zh" aria-pressed="false">中文</button>
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      </div>
+    </header>
+
+    <main class="screen" id="screen">
+
+      <!-- ========== 概览 ========== -->
+      <section class="view" data-view="overview" id="now">
+        <header class="view-head">
+          <h2 data-i18n="sec.now">现状</h2>
+          <p data-i18n="sec.now.desc">当前生效公告、受影响供应商，以及空气质量与扩散条件</p>
+        </header>
+
+        <section class="hero">
+          <div class="level-badge" id="levelBadge"><span>—</span><small>—</small></div>
+          <div class="hero-main">
+            <div class="eyebrow" id="noticeKind">—</div>
+            <h3 id="noticeTitle">—</h3>
+            <div class="meta-row" id="heroMeta"></div>
+            <div class="hero-side">
+              <p class="headline" id="headline">—</p>
+              <div class="stale" id="staleNote" hidden></div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="realert" id="reAlert" hidden>
+          <div class="realert-lead">
+            <div class="realert-head">
+              <span data-i18n="realert.title">近期复警概率</span>
+              <span class="realert-horizon" data-i18n="realert.horizon">未来 72 小时</span>
+            </div>
+            <div class="realert-value">
+              <span id="reAlertProb">—</span><small>%</small>
+            </div>
+            <div class="realert-level" id="reAlertLevel">—</div>
+            <div class="realert-bar"><i id="reAlertBar"></i></div>
+          </div>
+          <ul class="realert-drivers" id="reAlertDrivers"></ul>
+          <p class="realert-note" data-i18n="realert.note">
+            由未来 72 小时污染与气象预报，结合历史发文阈值估算
+          </p>
+        </aside>
+
+        <section class="kpis" id="kpis"></section>
+
+        <div class="grid-main">
+          <article class="pane">
+            <div class="pane-head">
+              <h3><svg class="i"><use href="#i-doc"></use></svg><span data-i18n="card.summary">今日判断</span></h3>
+              <span class="tag" id="engineTag">—</span>
+            </div>
+            <div class="md" id="summaryMd">—</div>
+            <div class="outlook" id="outlookBox" hidden></div>
+          </article>
+
+          <article class="pane">
+            <div class="pane-head">
+              <h3><svg class="i"><use href="#i-wind"></use></svg><span data-i18n="card.air">空气质量</span></h3>
+              <span class="tag" id="aqiSource">WAQI</span>
+            </div>
+            <div class="aqi-main">
+              <div class="aqi-value"><span id="aqiValue">—</span><small>AQI</small></div>
+              <div>
+                <div class="aqi-level" id="aqiLevel">—</div>
+                <div class="aqi-station" id="aqiStation"></div>
+              </div>
+            </div>
+            <canvas class="spark" id="spark" height="46"></canvas>
+            <div class="pollutants" id="pollutants"></div>
+            <div class="weather-row" id="weatherRow"></div>
+            <div class="dispersion" id="dispersion"></div>
+            <div class="region-block" id="regionBlock"></div>
+            <div class="alerts" id="alerts"></div>
+          </article>
+        </div>
+
+        <article class="pane">
+          <div class="pane-head">
+            <h3><svg class="i"><use href="#i-link"></use></svg><span data-i18n="card.beijing">北京官方动态</span></h3>
+            <span class="tag" data-i18n="bj.tag">北京市应急管理局 · 预警信息</span>
+          </div>
+          <div class="bj-status" id="bjStatus"></div>
+          <ul class="bj-feed" id="bjFeed"></ul>
+          <p class="hint" data-i18n="hint.beijing">
+            北京「预警信息」栏目把每一次空气重污染预警的发布/启动/解除挂在同一列表，标题写的是实际生效时刻。
+            德州按京津冀联防联控启动/解除，因此把北京的公告与本次响应做时间重叠比对：北京先解除时德州解除临近，
+            北京仍在响应时德州很少单独解除。
+          </p>
+        </article>
+
+        <article class="pane">
+          <div class="pane-head">
+            <h3><svg class="i"><use href="#i-gauge"></use></svg><span data-i18n="card.threshold">预警阈值</span></h3>
+            <span class="tag" id="thrTag" data-i18n="tag.threshold">9 个网格点 · 近 4 年</span>
+          </div>
+          <div class="thr-grid">
+            <div class="thr-main">
+              <div class="thr-status" id="thrStatus">—</div>
+              <p class="thr-sentence" id="thrSentence"></p>
+              <div class="thr-value"><span id="thrCurrent">—</span><small id="thrCurrentUnit">/ 9</small></div>
+              <div class="thr-track" id="thrBar"></div>
+              <div class="thr-scale" id="thrScale"></div>
+              <div class="thr-legend" id="thrLegend"></div>
+            </div>
+            <div class="thr-side" id="thrStats"></div>
+          </div>
+          <p class="hint" data-i18n="hint.threshold">
+            阈值依据近 4 年德州市域 9 个网格点的日均 AQI 与历次发文日期反推；「超标」= 该点日均 AQI ≥150。
+            达到警戒线仅表示进入关注区间，不构成发文预测（精确率见上），供提前准备参考。
+          </p>
+        </article>
+      </section>
+
+      <!-- ========== 趋势 ========== -->
+      <section class="view" data-view="trend" id="trend" hidden>
+        <header class="view-head">
+          <h2 data-i18n="toc.trend">趋势</h2>
+          <p data-i18n="sec.trend.desc">污染物浓度变化，以及同类应急响应的历史时长</p>
+        </header>
+
+        <div class="pane">
+          <div class="pane-head">
+            <h3><svg class="i"><use href="#i-activity"></use></svg><span data-i18n="card.chart">污染物逐时趋势</span></h3>
+            <span class="tag" data-i18n="tag.meteo">数据源 · Open-Meteo</span>
+          </div>
+          <div id="chart" class="chart"></div>
+          <p class="hint" data-i18n="hint.chart">左轴 μg/m³（PM2.5 / PM10 / O₃ / NO₂ / SO₂ / 沙尘），右轴 mg/m³（CO）。图例可逐项开关。</p>
+        </div>
+
+        <div class="pane">
+          <div class="pane-head">
+            <h3><svg class="i"><use href="#i-bars"></use></svg><span data-i18n="card.history">同类响应时长与预计解除</span></h3>
+            <span class="tag" data-i18n="tag.history">基于历次公告配对</span>
+          </div>
+          <div class="hist-stats" id="histStats"></div>
+          <div id="histChart" class="hist-chart"></div>
+          <p class="hint" id="histBjNote" hidden></p>
+          <p class="hint" data-i18n="hint.history">柱高 = 该次响应从启动到终止的天数；虚线为历史中位。预计解除日期属于推算，非官方公布。</p>
+        </div>
+      </section>
+
+      <!-- ========== 供应影响 ========== -->
+      <section class="view" data-view="impact" id="impact" hidden>
+        <header class="view-head">
+          <h2 data-i18n="toc.impact">供应影响</h2>
+          <p data-i18n="sec.impact.desc">受影响工序、减产比例、影响窗口与地理位置</p>
+        </header>
+
+        <div class="pane">
+          <div class="pane-head">
+            <h3><svg class="i"><use href="#i-list"></use></svg><span data-i18n="card.suppliers">供应商影响明细</span></h3>
+            <span class="tag" data-i18n="tag.list">数据源 · 固定源减排清单</span>
+          </div>
+          <div class="table-wrap">
+            <table class="data">
+              <thead>
+                <tr>
+                  <th data-i18n="th.supplier">供应商</th>
+                  <th data-i18n="th.performance">绩效等级</th>
+                  <th data-i18n="th.impact">影响程度</th>
+                  <th data-i18n="th.lines">受影响产线 / 工序</th>
+                  <th data-i18n="th.reduction">预计减产</th>
+                  <th data-i18n="th.duration">持续</th>
+                  <th data-i18n="th.window">影响窗口</th>
+                  <th data-i18n="th.cost">企业日成本</th>
+                </tr>
+              </thead>
+              <tbody id="supplierBody"></tbody>
+            </table>
+          </div>
+          <div id="supplierNote"></div>
+        </div>
+
+        <div class="pane">
+          <div class="pane-head">
+            <h3><svg class="i"><use href="#i-pin"></use></svg><span data-i18n="card.map">位置与监测站</span></h3>
+            <span class="tag" data-i18n="tag.map">按 AQI 着色</span>
+          </div>
+          <div id="map" class="map"></div>
+          <div class="legend">
+            <span><i class="dot-risk stop"></i><em data-i18n="legend.stop">全部停产</em></span>
+            <span><i class="dot-risk heavy"></i><em data-i18n="legend.heavy">大幅限产</em></span>
+            <span><i class="dot-risk partial"></i><em data-i18n="legend.partial">部分限产</em></span>
+            <span><i class="dot-risk none"></i><em data-i18n="legend.none">不受影响</em></span>
+          </div>
+          <p class="hint" id="mapHint"></p>
+        </div>
+      </section>
+
+      <!-- ========== 数据依据 ========== -->
+      <section class="view" data-view="basis" id="basis" hidden>
+        <header class="view-head">
+          <h2 data-i18n="toc.basis">数据依据</h2>
+          <p data-i18n="sec.basis.desc">数据出处、处置建议与公告记录</p>
+        </header>
+
+        <details class="pane" id="evidencePane" open>
+          <summary class="pane-head">
+            <h3><svg class="i"><use href="#i-link"></use></svg><span data-i18n="card.evidence">证据链 · 每个数字的出处</span></h3>
+            <span class="tag" data-i18n="tag.evidence">官方原文 / 计算 / 推算</span>
+          </summary>
+          <div id="evidenceBody"></div>
+        </details>
+
+        <article class="pane">
+          <div class="pane-head">
+            <h3><svg class="i"><use href="#i-shield"></use></svg><span data-i18n="card.playbook">处置建议</span></h3>
+            <span class="tag danger" data-i18n="tag.action">建议执行</span>
+          </div>
+          <ul class="actions" id="counterList"></ul>
+        </article>
+
+        <article class="pane">
+          <div class="pane-head">
+            <h3><svg class="i"><use href="#i-clock"></use></svg><span data-i18n="card.timeline">公告记录</span></h3>
+            <span class="tag" data-i18n="tag.recent">最近记录</span>
+          </div>
+          <ul class="timeline" id="timeline"></ul>
+        </article>
+
+        <footer>
+          <div class="src-grid" id="sourcesBox"></div>
+          <p class="disclaimer" data-i18n="footer.disclaimer">
+            数据来源：德州市生态环境局公告与附件、《重污染天气应急减排清单》、北京市应急管理局预警信息、WAQI、Open-Meteo、OpenStreetMap。
+            标注为「推算」的内容为模型估算，非官方公布；限产措施以公告与清单原文为准。
+          </p>
+        </footer>
+      </section>
+    </main>
+
+    <!-- 手机端：底部标签栏 -->
+    <nav class="tabbar" aria-label="sections">
+      <button type="button" data-view="overview">
+        <svg class="i"><use href="#i-building"></use></svg>
+        <span data-i18n="toc.now">概览</span>
+      </button>
+      <button type="button" data-view="trend">
+        <svg class="i"><use href="#i-activity"></use></svg>
+        <span data-i18n="toc.trend">趋势</span>
+      </button>
+      <button type="button" data-view="impact">
+        <svg class="i"><use href="#i-list"></use></svg>
+        <span data-i18n="toc.impact">供应影响</span>
+      </button>
+      <button type="button" data-view="basis">
+        <svg class="i"><use href="#i-link"></use></svg>
+        <span data-i18n="toc.basis">数据依据</span>
+      </button>
+    </nav>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="./data/latest.js?v=1795593418"></script>
+<script src="./app.js?v=1795593418"></script>
+</body>
+</html>

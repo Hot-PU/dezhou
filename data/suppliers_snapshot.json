@@ -1,0 +1,140 @@
+{
+  "generated_at": "2026-11-05T10:23:31+08:00",
+  "source": "2-固定源应急减排措施清单.xlsx",
+  "sheet": "固定源",
+  "note": "由 python run.py --snapshot 从官方减排清单生成；可直接提交到仓库，部署时无需 Excel。",
+  "companies": {
+    "山东军高过滤材料有限公司": {
+      "name": "山东军高过滤材料有限公司",
+      "credit_code": "91371400MA3MLKKA0U",
+      "district": "天衢新区",
+      "town": "京津冀协同发展产业合作区街道",
+      "address": "天衢东路6666号",
+      "lon": 116.335352,
+      "lat": 37.186762,
+      "industry": "玻璃",
+      "industry_branch": "玻璃后加工",
+      "performance": "非绩效引领",
+      "is_small": "否",
+      "product": "过滤材料",
+      "capacity": 1100.0,
+      "capacity_unit": "万平方米",
+      "zone": "无",
+      "by_color": {
+        "红色预警": {
+          "lines": [
+            {
+              "process": "吹棉、收棉、固化工序（4条生产线）",
+              "measure": "吹棉、收棉、固化工序（4条生产线）停产",
+              "way": "停产",
+              "cost_per_day": 10000.0,
+              "row": 2434
+            },
+            {
+              "process": "复合工序（2条生产线）",
+              "measure": "复合工序（2条生产线）停产",
+              "way": "停产",
+              "cost_per_day": 10000.0,
+              "row": 2435
+            },
+            {
+              "process": "缝纫工序（2条生产线）",
+              "measure": "缝纫工序（2条生产线）停产",
+              "way": "停产",
+              "cost_per_day": 10000.0,
+              "row": 2436
+            },
+            {
+              "process": "车辆运输",
+              "measure": "停止公路运输，停止使用国二及以下非道路移动机械（紧急作业机械除外）",
+              "way": "移动源管控",
+              "cost_per_day": 0.0,
+              "row": 2437
+            }
+          ],
+          "reduction_pct": 100,
+          "reduction_method": "按产线加权（8 条生产线）",
+          "stopped_processes": 3,
+          "daily_cost": 30000,
+          "summary": "吹棉、收棉、固化工序（4条生产线）→停产；复合工序（2条生产线）→停产；缝纫工序（2条生产线）→停产；车辆运输→移动源管控"
+        },
+        "橙色预警": {
+          "lines": [
+            {
+              "process": "吹棉、收棉、固化工序（4条生产线）",
+              "measure": "吹棉、收棉、固化工序（2条生产线）停产",
+              "way": "限产50%",
+              "cost_per_day": 7000.0,
+              "row": 2434
+            },
+            {
+              "process": "复合工序（2条生产线）",
+              "measure": "复合工序（1条生产线）停产",
+              "way": "限产50%",
+              "cost_per_day": 7000.0,
+              "row": 2435
+            },
+            {
+              "process": "缝纫工序（2条生产线）",
+              "measure": "缝纫工序（1条生产线）停产",
+              "way": "限产50%",
+              "cost_per_day": 7000.0,
+              "row": 2436
+            },
+            {
+              "process": "车辆运输",
+              "measure": "停止使用国四及以下运输车辆，停止使用国二及以下非道路移动机械（紧急作业机械除外）",
+              "way": "移动源管控",
+              "cost_per_day": 0.0,
+              "row": 2437
+            }
+          ],
+          "reduction_pct": 50,
+          "reduction_method": "按产线加权（8 条生产线）",
+          "stopped_processes": 0,
+          "daily_cost": 21000,
+          "summary": "吹棉、收棉、固化工序（4条生产线）→限产50%；复合工序（2条生产线）→限产50%；缝纫工序（2条生产线）→限产50%；车辆运输→移动源管控"
+        },
+        "黄色预警": {
+          "lines": [
+            {
+              "process": "吹棉、收棉、固化工序（4条生产线）",
+              "measure": "正常生产",
+              "way": "自主减排",
+              "cost_per_day": 0.0,
+              "row": 2434
+            },
+            {
+              "process": "复合工序（2条生产线）",
+              "measure": "正常生产",
+              "way": "自主减排",
+              "cost_per_day": 0.0,
+              "row": 2435
+            },
+            {
+              "process": "缝纫工序（2条生产线）",
+              "measure": "正常生产",
+              "way": "自主减排",
+              "cost_per_day": 0.0,
+              "row": 2436
+            },
+            {
+              "process": "车辆运输",
+              "measure": "停止使用国四及以下重型载货车辆（含燃气）进行运输。",
+              "way": "移动源管控",
+              "cost_per_day": 0.0,
+              "row": 2437
+            }
+          ],
+          "reduction_pct": 5,
+          "reduction_method": "按产线加权（8 条生产线）",
+          "stopped_processes": 0,
+          "daily_cost": 0,
+          "summary": "吹棉、收棉、固化工序（4条生产线）→自主减排；复合工序（2条生产线）→自主减排；缝纫工序（2条生产线）→自主减排；车辆运输→移动源管控"
+        }
+      },
+      "row": 2434,
+      "source_file": "2-固定源应急减排措施清单.xlsx"
+    }
+  }
+}

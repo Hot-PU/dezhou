@@ -1,0 +1,283 @@
+/* ==================================================================
+   App shell — 桌面左侧边栏 / 手机 AppBar+底部标签栏
+   在 style.css 之后加载，覆盖旧的滚动式布局
+   ================================================================== */
+html, body {
+  height: 100%;
+  overflow: hidden;            /* 整页不滚动：滚动发生在 .app-body 内部 */
+  overscroll-behavior: none;   /* 禁掉浏览器级下拉/上拉橡皮筋 */
+  background: #fff;
+}
+
+.app { display: grid; grid-template-columns: 248px minmax(0, 1fr); height: 100%; }
+
+.rail {
+  position: relative; height: 100%;
+  display: flex; flex-direction: column; gap: 22px;
+  padding: 22px 14px;
+  border-right: 1px solid var(--line);
+  background: #fcfcfd;
+}
+.rail-brand { display: flex; gap: 10px; align-items: center; padding: 2px 8px; }
+.rail-title b { display: block; font-size: 13px; line-height: 1.3; font-weight: 600; letter-spacing: -0.01em; }
+
+.rail-nav { display: flex; flex-direction: column; gap: 2px; }
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 10px; border: 0; border-radius: 8px;
+  background: transparent; cursor: pointer; font: inherit;
+  font-size: 13px; color: var(--muted); text-align: left;
+  transition: background 0.18s var(--ease), color 0.18s var(--ease);
+}
+.nav-item .i { color: currentColor; transition: transform 0.18s var(--ease); }
+.nav-item:hover { background: #f2f2f5; color: var(--ink); }
+.nav-item:hover .i { transform: translateX(1px); }
+.nav-item.active { background: #eeeff3; color: var(--ink); font-weight: 500; }
+
+.rail-foot { margin-top: auto; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 0 4px; }
+.rail-meta { font-size: 10.5px; color: var(--faint); line-height: 1.6; }
+
+/* 语言切换：小号分段控件，不拉满整栏 */
+.rail-foot .lang-switch { align-self: flex-start; padding: 2px; border-radius: 7px; }
+.rail-foot .lang-switch button { font-size: 11px; padding: 3px 9px; border-radius: 5px; }
+.rail-foot .lang-switch button[aria-pressed="true"] { font-weight: 600; }
+
+.app-body {
+  min-width: 0; display: flex; flex-direction: column;
+  height: 100%;
+  overflow-y: auto;                /* 桌面：这一列滚动，侧栏是独立列不受影响 */
+  overscroll-behavior: contain;
+}
+.appbar { display: none; }
+
+.screen {
+  flex: 1 0 auto; width: 100%;
+  padding: 30px 44px 64px;
+}
+.view[hidden] { display: none; }
+.view { animation: viewIn 0.26s var(--ease); }
+@keyframes viewIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.view-head { margin-bottom: 22px; }
+.view-head h2 { margin: 0; font-size: 26px; font-weight: 500; letter-spacing: -0.03em; }
+.view-head p { margin: 6px 0 0; font-size: 12.5px; color: var(--faint); }
+
+.tabbar { display: none; }
+
+/* 组件微调 */
+.screen .pane { margin-bottom: 14px; }
+.screen .hero { margin-bottom: 18px; }
+.screen .kpis { margin-bottom: 30px; padding-left: 2px; }
+.screen .kpi { padding-right: 22px; }
+.screen .kpi:first-child { padding-left: 8px; }
+
+/* 去掉指标之间的竖分隔线 */
+.kpi, .hist-stat, .poll { border-right: 0; }
+.kpis { column-gap: 10px; }
+.hist-stats { column-gap: 6px; }
+.pollutants { column-gap: 6px; }
+
+/* 抬头收紧 */
+.screen .hero { grid-template-columns: 72px minmax(0, 1fr); gap: 14px 20px; }
+.screen .level-badge { width: 72px; height: 66px; border-radius: 12px; }
+.screen .level-badge span { font-size: 19px; letter-spacing: 0; }
+.screen .level-badge small { font-size: 9px; letter-spacing: 0.06em; white-space: nowrap; }
+.screen .hero-main h3 { font-size: 22px; margin: 8px 0 10px; letter-spacing: -0.025em; }
+.screen .eyebrow { font-size: 9.5px; letter-spacing: 0.14em; }
+.screen .meta-row { font-size: 11.5px; gap: 6px 12px; }
+.screen .hero-side { margin-top: 12px; }
+.screen .headline {
+  border-left: 2px solid #e8eef9;
+  padding-left: 12px;
+  font-size: 13.5px;
+}
+@media (min-width: 901px) {
+  .meta-row .meta-note { display: none; }
+}
+
+/* 复警概率：整行横向卡片 */
+.realert {
+  display: grid;
+  grid-template-columns: 232px minmax(0, 1fr) 236px;
+  gap: 16px 32px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fcfcfd;
+  padding: 16px 22px;
+  margin: -2px 0 26px;
+}
+.realert-lead { min-width: 0; }
+.realert-head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+  font-size: 11.5px; color: var(--ink-2); font-weight: 500;
+}
+.realert-horizon { font-size: 10.5px; color: var(--faint); font-weight: 400; }
+.realert-value {
+  font-size: 38px; font-weight: 400; line-height: 1;
+  letter-spacing: -0.05em; margin: 8px 0 4px;
+  font-variant-numeric: tabular-nums;
+}
+.realert-value small { font-size: 13px; color: var(--faint); margin-left: 3px; }
+.realert-level { font-size: 11.5px; color: var(--muted); margin-bottom: 9px; }
+.realert-level.low { color: var(--ok); }
+.realert-level.moderate { color: #8a6d00; }
+.realert-level.elevated { color: var(--warn); }
+.realert-level.high { color: var(--danger); }
+.realert-bar { height: 4px; border-radius: 3px; background: var(--line-2); overflow: hidden; }
+.realert-bar i { display: block; height: 100%; width: 0; border-radius: 3px; background: var(--ink); transition: width 0.6s var(--ease); }
+.realert-bar i.low { background: #34c759; }
+.realert-bar i.moderate { background: #d7b226; }
+.realert-bar i.elevated { background: #e08a1e; }
+.realert-bar i.high { background: var(--danger); }
+.realert-drivers {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px 28px;
+  font-size: 11.5px; color: var(--muted);
+}
+.realert-drivers li { display: flex; justify-content: space-between; gap: 10px; }
+.realert-drivers b { font-weight: 500; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.realert-note {
+  margin: 0; padding-left: 20px; border-left: 1px solid var(--line-2);
+  font-size: 10.5px; color: var(--faint); line-height: 1.7;
+}
+
+@media (max-width: 1100px) {
+  .realert { grid-template-columns: 200px minmax(0, 1fr); }
+  .realert-note {
+    grid-column: 1 / -1; padding-left: 0; border-left: 0;
+    padding-top: 10px; border-top: 1px solid var(--line-2);
+  }
+}
+@media (max-width: 700px) {
+  .realert { grid-template-columns: 1fr; gap: 10px; padding: 14px 16px; }
+  .realert-drivers { grid-template-columns: 1fr; gap: 6px; }
+  .realert-value { font-size: 32px; }
+  .realert-note {
+    padding-left: 0; border-left: 0;
+    padding-top: 10px; border-top: 1px solid var(--line-2);
+  }
+}
+
+/* 地图容器建立独立层叠上下文，Leaflet pane 不会盖住 AppBar / 标签栏 */
+.map { position: relative; z-index: 0; isolation: isolate; }
+
+/* ---------------- 手机：AppBar + 内容滚动 + 底部标签栏 ---------------- */
+@media (max-width: 900px) {
+  .app { grid-template-columns: 1fr; }
+  .rail { display: none; }
+
+  /* 手机：app-body 不滚，AppBar / 标签栏常驻，只有内容区滚动 */
+  .app-body { overflow: hidden; overscroll-behavior: none; }
+  .screen {
+    flex: 1 1 auto; min-height: 0;
+    overflow-y: auto; overscroll-behavior: contain;
+  }
+
+  .appbar {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    flex: 0 0 52px; z-index: 60;
+    height: 52px; padding: 0 16px;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+  }
+  .appbar-brand { display: flex; align-items: center; gap: 9px; min-width: 0; }
+  .appbar .mark { width: 26px; height: 26px; flex-basis: 26px; border-radius: 8px; }
+  .appbar-title { font-size: 15px; font-weight: 600; letter-spacing: -0.02em; }
+
+  /* AppBar / 标签栏固定，只有内容区滚动（min-height:0 是关键，
+     否则 flex 子项拒绝收缩，整个 app-body 会一起滚，菜单就被顶走了） */
+  .screen {
+    flex: 1 1 auto; min-height: 0;
+    overflow-y: auto; overscroll-behavior: contain;
+    padding: 16px 16px 28px;
+  }
+  .screen::-webkit-scrollbar { width: 0; }   /* 内容区自带滚动条，隐藏避免占位 */
+
+  .tabbar {
+    display: flex; flex: 0 0 auto; z-index: 70;
+    padding-bottom: env(safe-area-inset-bottom);
+    background: #fff;
+    border-top: 1px solid var(--line);
+  }
+  .tabbar button {
+    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px;
+    padding: 9px 0 8px; border: 0; background: none; cursor: pointer;
+    font: inherit; font-size: 10px; color: var(--faint);
+    transition: color 0.16s var(--ease);
+  }
+  .tabbar button .i { width: 21px; height: 21px; flex-basis: 21px; stroke-width: 1.6; }
+  .tabbar button.active { color: var(--ink); }
+  .tabbar button.active .i { stroke-width: 1.9; }
+  .tabbar button.active span { font-weight: 500; }
+
+  .view-head { margin-bottom: 12px; }
+  .view-head h2 { display: none; }   /* AppBar 已显示当前页名 */
+  .view-head p { margin: 0; font-size: 12px; }
+
+  /* 抬头：徽标只留级别，去掉会换行的小字 */
+  .screen .level-badge { width: 62px; height: 62px; }
+  .screen .level-badge small { display: none; }
+  .screen .level-badge span { font-size: 20px; }
+  .screen .hero { grid-template-columns: 62px 1fr; gap: 12px 14px; }
+  .screen .hero-main h3 { font-size: 18.5px; margin: 6px 0 9px; }
+
+  /* 7 个指标 2 列，最后一项通栏 */
+  .screen .kpis { grid-template-columns: repeat(2, 1fr); }
+  .screen .kpi { padding: 13px 12px 15px 0; }
+  .screen .kpi:last-child { grid-column: 1 / -1; border-bottom: 0; }
+
+  .screen .pane { padding: 18px; border-radius: 14px; margin-bottom: 12px; }
+  .screen .kpis { margin-bottom: 24px; }
+  .screen .hero { margin-bottom: 20px; }
+  .hero-main h3 { font-size: 19px; }
+  .aqi-value { font-size: 42px; }
+  .map { height: 300px; }
+  .chart { height: 260px; }
+  .legend { gap: 8px 16px; }
+
+  /* 阈值统计：单列，标签左、数值右，不换行 */
+  .thr-side { grid-template-columns: 1fr; column-gap: 0; margin-top: 16px; }
+  .thr-row { font-size: 12px; padding: 9px 0; gap: 12px; }
+  .thr-row span { flex: 1 1 auto; min-width: 0; line-height: 1.5; }
+  .thr-row b { flex: 0 0 auto; white-space: nowrap; }
+  .thr-sentence { font-size: 12.5px; margin: 8px 0 14px; }
+  .thr-value { font-size: 30px; margin-bottom: 14px; }
+  .thr-track { height: 24px; }
+  .thr-legend { gap: 10px 14px; font-size: 10.5px; }
+
+  /* 表格 → 卡片列表（App 里不横滑） */
+  .table-wrap { overflow: visible; }
+  table.data { min-width: 0; display: block; }
+  table.data thead { display: none; }
+  table.data tbody { display: block; }
+  table.data tr {
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+  table.data td {
+    display: flex; justify-content: space-between; gap: 14px;
+    padding: 5px 0; border: 0; font-size: 12.5px;
+  }
+  table.data td::before {
+    content: attr(data-label);
+    flex: 0 0 auto;
+    color: var(--faint); font-size: 11px; letter-spacing: 0.04em;
+  }
+  table.data td > *:last-child { text-align: right; }
+  table.data td.name {
+    display: block; padding: 0 0 10px;
+    border-bottom: 1px solid var(--line-2); margin-bottom: 8px;
+    font-size: 14px;
+  }
+  table.data td.name::before { display: none; }
+  table.data td.nowrap { white-space: normal; }
+
+  .meta-row .meta-note { display: none; }
+}

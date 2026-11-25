@@ -1,0 +1,6 @@
+requests>=2.31
+PyYAML>=6.0
+openpyxl>=3.1
+python-docx>=1.1
+# 只有把 SOURCE_PROXY 配成 socks5/socks5h 时才需要（requests 的 SOCKS 支持）
+PySocks>=1.7
