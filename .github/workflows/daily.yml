@@ -1,0 +1,145 @@
+name: 每日重污染巡检
+
+on:
+  schedule:
+    # 每天 3 次（北京时间 07:30 / 13:30 / 19:30）= UTC 前一日 23:30、05:30、11:30
+    - cron: "30 23 * * *"
+    - cron: "30 5 * * *"
+    - cron: "30 11 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "公告未更新也强制重新分析"
+        type: boolean
+        default: false
+      notify_test:
+        description: "发送一封测试邮件（验证 SMTP 配置）"
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "config/**"
+      - "web/**"
+      - "run.py"
+      - "requirements.txt"
+      - ".github/workflows/daily.yml"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: supply-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: 安装依赖
+        run: pip install -r requirements.txt
+
+      - name: 抓取 + 分析 + 生成站点 + 邮件通知
+        env:
+          WAQI_TOKEN: ${{ secrets.WAQI_TOKEN }}
+          # 源站中继已内置在 config/settings.yaml（Cloudflare Worker），下面两项仅用于覆盖：
+          #   SOURCE_RELAY  Worker 中继地址（不配则用内置）
+          #   SOURCE_PROXY  国内出口的 HTTP/SOCKS 代理
+          SOURCE_RELAY: ${{ secrets.SOURCE_RELAY }}
+          SOURCE_PROXY: ${{ secrets.SOURCE_PROXY }}
+          AI_API_KEY: ${{ secrets.AI_API_KEY }}
+          AI_BASE_URL: ${{ secrets.AI_BASE_URL }}
+          AI_MODEL: ${{ secrets.AI_MODEL }}
+          # 邮件通知：配置仓库 Secrets 后自动生效，细节见 config/notifications.yaml
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_SECURITY: ${{ secrets.SMTP_SECURITY }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_FROM: ${{ secrets.SMTP_FROM }}
+          SMTP_TO: ${{ secrets.SMTP_TO }}
+          EMAIL_DRY_RUN: ${{ vars.EMAIL_DRY_RUN }}
+        run: |
+          if [ "${{ inputs.force }}" = "true" ]; then
+            python run.py --force
+          else
+            python run.py
+          fi
+
+      - name: 发送测试邮件
+        if: ${{ inputs.notify_test == true }}
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_SECURITY: ${{ secrets.SMTP_SECURITY }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_FROM: ${{ secrets.SMTP_FROM }}
+          SMTP_TO: ${{ secrets.SMTP_TO }}
+          EMAIL_DRY_RUN: "false"
+        run: python run.py --notify-test
+
+      - name: 提交数据与页面
+        id: commit
+        run: |
+          # 必须用 GitHub 官方机器人身份：Vercel 能识别它；
+          # 自造身份（如 supply-watch-bot + actions@users.noreply.github.com）
+          # 会被当成“无权限的提交作者”，触发 Deployment Blocked。
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data docs
+          if git diff --cached --quiet; then
+            echo "无变化，跳过提交"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "chore: 每日重污染巡检 $(TZ=Asia/Shanghai date +%F)"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # 备用通道：万一 Vercel 的 Git 集成仍判定提交作者无权限，
+      # 用 CLI 部署绕过（CLI 部署没有 Git 作者）。没配 VERCEL_TOKEN 时自动跳过。
+      - name: 部署到 Vercel
+        if: steps.commit.outputs.changed == 'true' || github.event_name == 'push'
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "未配置 VERCEL_TOKEN，跳过 CLI 部署"
+            exit 0
+          fi
+          npx --yes vercel@latest deploy --prod --yes --token "$VERCEL_TOKEN"
+
+  # 仅当仓库 Variables 里设置 DEPLOY_PAGES=true 时才发布 GitHub Pages；
+  # 用 Vercel 部署时可以留空，这个 job 会自动跳过。
+  deploy:
+    needs: watch
+    if: vars.DEPLOY_PAGES == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+      - id: deployment
+        uses: actions/deploy-pages@v4
