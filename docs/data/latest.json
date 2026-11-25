@@ -1,11 +1,11 @@
 {
   "meta": {
     "site_name": "德州供应商重污染减产监督台",
-    "generated_at": "2026-11-25T15:56:58+08:00",
+    "generated_at": "2026-11-25T16:04:17+08:00",
     "analysis_date": "2026-11-25",
     "analysis_generated_at": "2026-11-25T15:56:58+08:00",
-    "status": "new",
-    "status_label": "今日已更新",
+    "status": "unchanged",
+    "status_label": "公告未更新，沿用上次分析",
     "source_url": "https://dzbee.dezhou.gov.cn/n23586430/index.html",
     "timezone": "Asia/Shanghai",
     "supplier_count": 1,
@@ -20,7 +20,7 @@
       "predicted_days": 9,
       "predicted_end": null,
       "elapsed_days": 7,
-      "as_of": "2026-11-25T15:56+08:00",
+      "as_of": "2026-11-25T16:04+08:00",
       "conditional": true,
       "conditional_samples": 6,
       "remaining_days": 1.1,
@@ -144,7 +144,9 @@
     "notification": {
       "sent": false,
       "reason": "already sent for this notice"
-    }
+    },
+    "prediction_refreshed_at": "2026-11-25T16:04:17+08:00",
+    "analysis_refreshed_at": "2026-11-25T16:04:17+08:00"
   },
   "notice": {
     "id": "c102519474",
@@ -192,10 +194,10 @@
       "url": "https://aqicn.org/city/dezhou"
     },
     "weather": {
-      "time": "2026-11-25T15:45",
-      "temperature": 14.3,
-      "humidity": 32.0,
-      "wind_speed": 18.1,
+      "time": "2026-11-25T16:00",
+      "temperature": 14.1,
+      "humidity": 33.0,
+      "wind_speed": 18.0,
       "wind_dir": 199.0,
       "precipitation": 0.0,
       "weather_code": 0
@@ -1273,16 +1275,6 @@
     },
     "stations": [
       {
-        "name": "德州监测站",
-        "full_name": "Monitoring station, Dezhou (德州监测站)",
-        "lat": 37.43222222,
-        "lon": 116.3713889,
-        "aqi": 159,
-        "level": "中度污染",
-        "uid": 618,
-        "time": "2026-11-25T09:00:00+09:00"
-      },
-      {
         "name": "衡水市滨湖新区管委会",
         "full_name": "Binhu New District Management Committee, Hengshui (衡水市滨湖新区管委会)",
         "lat": 37.648,
@@ -1303,16 +1295,6 @@
         "time": "2026-11-25T14:00:00+09:00"
       },
       {
-        "name": "辛集市辛集城管大队",
-        "full_name": "Xinji City Management Brigade, Xinji (辛集市辛集城管大队)",
-        "lat": 37.933,
-        "lon": 115.201,
-        "aqi": 144,
-        "level": "轻度污染",
-        "uid": 9669,
-        "time": "2026-11-25T14:00:00+09:00"
-      },
-      {
         "name": "惠民县惠民武圣园",
         "full_name": "Huimin Wusheng Park, Huimin County (惠民县惠民武圣园)",
         "lat": 37.4925,
@@ -1330,6 +1312,16 @@
         "aqi": 144,
         "level": "轻度污染",
         "uid": 10379,
+        "time": "2026-11-25T14:00:00+09:00"
+      },
+      {
+        "name": "辛集市辛集城管大队",
+        "full_name": "Xinji City Management Brigade, Xinji (辛集市辛集城管大队)",
+        "lat": 37.933,
+        "lon": 115.201,
+        "aqi": 144,
+        "level": "轻度污染",
+        "uid": 9669,
         "time": "2026-11-25T14:00:00+09:00"
       },
       {
@@ -1373,16 +1365,6 @@
         "time": "2026-11-25T14:00:00+09:00"
       },
       {
-        "name": "章丘市章丘城区",
-        "full_name": "Zhangqiucheng District, Zhangqiu City (章丘市章丘城区)",
-        "lat": 36.687222,
-        "lon": 117.5375,
-        "aqi": 132,
-        "level": "轻度污染",
-        "uid": 10244,
-        "time": "2026-11-25T16:00:00+09:00"
-      },
-      {
         "name": "济南农科所",
         "full_name": "Agriculture Science Institute, Jinan (济南农科所)",
         "lat": 36.663,
@@ -1393,34 +1375,14 @@
         "time": "2026-11-25T15:00:00+09:00"
       },
       {
-        "name": "衡水市枣强康城小区",
-        "full_name": "Zaoqiang Kangcheng Community, Hengshui (衡水市枣强康城小区)",
-        "lat": 37.509,
-        "lon": 115.704,
-        "aqi": 129,
+        "name": "章丘市章丘城区",
+        "full_name": "Zhangqiucheng District, Zhangqiu City (章丘市章丘城区)",
+        "lat": 36.687222,
+        "lon": 117.5375,
+        "aqi": 132,
         "level": "轻度污染",
-        "uid": 9779,
-        "time": "2026-11-25T14:00:00+09:00"
-      },
-      {
-        "name": "庆云县庆丰影音科技中心",
-        "full_name": "Qingfeng Audio and Video Technology Center, Qingyun County (庆云县庆丰影音科技中心)",
-        "lat": 37.779419,
-        "lon": 117.401028,
-        "aqi": 129,
-        "level": "轻度污染",
-        "uid": 10363,
-        "time": "2026-11-25T15:00:00+09:00"
-      },
-      {
-        "name": "宁津县宁津惠宁湖",
-        "full_name": "Ningjin Huining Lake, Ningjin County (宁津县宁津惠宁湖)",
-        "lat": 37.597456,
-        "lon": 116.756814,
-        "aqi": 129,
-        "level": "轻度污染",
-        "uid": 10361,
-        "time": "2026-11-25T14:00:00+09:00"
+        "uid": 10244,
+        "time": "2026-11-25T16:00:00+09:00"
       },
       {
         "name": "衡水市深州市政府",
@@ -1440,6 +1402,36 @@
         "aqi": 129,
         "level": "轻度污染",
         "uid": 10366,
+        "time": "2026-11-25T15:00:00+09:00"
+      },
+      {
+        "name": "衡水市枣强康城小区",
+        "full_name": "Zaoqiang Kangcheng Community, Hengshui (衡水市枣强康城小区)",
+        "lat": 37.509,
+        "lon": 115.704,
+        "aqi": 129,
+        "level": "轻度污染",
+        "uid": 9779,
+        "time": "2026-11-25T14:00:00+09:00"
+      },
+      {
+        "name": "宁津县宁津惠宁湖",
+        "full_name": "Ningjin Huining Lake, Ningjin County (宁津县宁津惠宁湖)",
+        "lat": 37.597456,
+        "lon": 116.756814,
+        "aqi": 129,
+        "level": "轻度污染",
+        "uid": 10361,
+        "time": "2026-11-25T14:00:00+09:00"
+      },
+      {
+        "name": "庆云县庆丰影音科技中心",
+        "full_name": "Qingfeng Audio and Video Technology Center, Qingyun County (庆云县庆丰影音科技中心)",
+        "lat": 37.779419,
+        "lon": 117.401028,
+        "aqi": 129,
+        "level": "轻度污染",
+        "uid": 10363,
         "time": "2026-11-25T15:00:00+09:00"
       },
       {
@@ -1463,16 +1455,6 @@
         "time": "2026-11-25T14:00:00+09:00"
       },
       {
-        "name": "德州",
-        "full_name": "Dezhou (德州)",
-        "lat": 37.434093,
-        "lon": 116.357465,
-        "aqi": 124,
-        "level": "轻度污染",
-        "uid": 1518,
-        "time": "2026-11-25T14:00:00+09:00"
-      },
-      {
         "name": "衡水市环境监测站",
         "full_name": "Environmental Monitoring Station, Hengshui (衡水市环境监测站)",
         "lat": 37.738,
@@ -1480,6 +1462,16 @@
         "aqi": 124,
         "level": "轻度污染",
         "uid": 692,
+        "time": "2026-11-25T14:00:00+09:00"
+      },
+      {
+        "name": "德州",
+        "full_name": "Dezhou (德州)",
+        "lat": 37.434093,
+        "lon": 116.357465,
+        "aqi": 124,
+        "level": "轻度污染",
+        "uid": 1518,
         "time": "2026-11-25T14:00:00+09:00"
       },
       {
@@ -1493,14 +1485,14 @@
         "time": "2026-11-25T14:00:00+09:00"
       },
       {
-        "name": "济南科干所",
-        "full_name": "Kegansuo, Jinan (济南科干所)",
-        "lat": 36.61138889,
-        "lon": 116.9880556,
+        "name": "武城县武城县第四中学",
+        "full_name": "Wucheng County No. 4 Middle School, Wucheng County (武城县武城县第四中学)",
+        "lat": 37.195833,
+        "lon": 116.057222,
         "aqi": 122,
         "level": "轻度污染",
-        "uid": 500,
-        "time": "2026-11-25T15:00:00+09:00"
+        "uid": 10374,
+        "time": "2026-11-25T14:00:00+09:00"
       },
       {
         "name": "武城县临盘齐鲁学院",
@@ -1513,14 +1505,14 @@
         "time": "2026-11-25T15:00:00+09:00"
       },
       {
-        "name": "武城县武城县第四中学",
-        "full_name": "Wucheng County No. 4 Middle School, Wucheng County (武城县武城县第四中学)",
-        "lat": 37.195833,
-        "lon": 116.057222,
+        "name": "济南科干所",
+        "full_name": "Kegansuo, Jinan (济南科干所)",
+        "lat": 36.61138889,
+        "lon": 116.9880556,
         "aqi": 122,
         "level": "轻度污染",
-        "uid": 10374,
-        "time": "2026-11-25T14:00:00+09:00"
+        "uid": 500,
+        "time": "2026-11-25T15:00:00+09:00"
       },
       {
         "name": "济南市监测站",
@@ -1583,16 +1575,6 @@
         "time": "2026-11-25T16:00:00+09:00"
       },
       {
-        "name": "沧州市东光县政府",
-        "full_name": "Dongguang County Government, Cangzhou (沧州市东光县政府)",
-        "lat": 37.889,
-        "lon": 116.537,
-        "aqi": 114,
-        "level": "轻度污染",
-        "uid": 9762,
-        "time": "2026-11-25T14:00:00+09:00"
-      },
-      {
         "name": "沧州市沧县汪家铺中学",
         "full_name": "Yi County Wangjiapu Middle School, Cangzhou (沧州市沧县汪家铺中学)",
         "lat": 38.262,
@@ -1600,6 +1582,16 @@
         "aqi": 114,
         "level": "轻度污染",
         "uid": 9760,
+        "time": "2026-11-25T14:00:00+09:00"
+      },
+      {
+        "name": "沧州市东光县政府",
+        "full_name": "Dongguang County Government, Cangzhou (沧州市东光县政府)",
+        "lat": 37.889,
+        "lon": 116.537,
+        "aqi": 114,
+        "level": "轻度污染",
+        "uid": 9762,
         "time": "2026-11-25T14:00:00+09:00"
       },
       {
@@ -1613,16 +1605,6 @@
         "time": "2026-11-25T10:00:00+09:00"
       },
       {
-        "name": "沧州",
-        "full_name": "Cangzhou (沧州)",
-        "lat": 38.304477,
-        "lon": 116.838835,
-        "aqi": 112,
-        "level": "轻度污染",
-        "uid": 1462,
-        "time": "2026-11-25T15:00:00+09:00"
-      },
-      {
         "name": "沧州市电视转播站",
         "full_name": "TV Broadcast Station, Cangzhou (沧州市电视转播站)",
         "lat": 38.325,
@@ -1633,14 +1615,24 @@
         "time": "2026-11-25T15:00:00+09:00"
       },
       {
-        "name": "夏津县夏津县市民中心",
-        "full_name": "Xiajin County Civic Center, Xiajin County (夏津县夏津县市民中心)",
-        "lat": 36.98425,
-        "lon": 116.005638,
+        "name": "沧州",
+        "full_name": "Cangzhou (沧州)",
+        "lat": 38.304477,
+        "lon": 116.838835,
+        "aqi": 112,
+        "level": "轻度污染",
+        "uid": 1462,
+        "time": "2026-11-25T15:00:00+09:00"
+      },
+      {
+        "name": "齐河县齐河县第一中学",
+        "full_name": "Qihe County No. 1 Middle School, Qihe County (齐河县齐河县第一中学)",
+        "lat": 36.781666,
+        "lon": 116.741388,
         "aqi": 109,
         "level": "轻度污染",
-        "uid": 10372,
-        "time": "2026-11-25T15:00:00+09:00"
+        "uid": 10367,
+        "time": "2026-11-25T16:00:00+09:00"
       },
       {
         "name": "齐河县齐河县烈士纪念馆",
@@ -1663,6 +1655,16 @@
         "time": "2026-11-25T15:00:00+09:00"
       },
       {
+        "name": "夏津县夏津县市民中心",
+        "full_name": "Xiajin County Civic Center, Xiajin County (夏津县夏津县市民中心)",
+        "lat": 36.98425,
+        "lon": 116.005638,
+        "aqi": 109,
+        "level": "轻度污染",
+        "uid": 10372,
+        "time": "2026-11-25T15:00:00+09:00"
+      },
+      {
         "name": "济阳县济阳开发区",
         "full_name": "Jiyang Development Zone, Jiyang County (济阳县济阳开发区)",
         "lat": 36.985833,
@@ -1671,16 +1673,6 @@
         "level": "轻度污染",
         "uid": 10250,
         "time": "2026-11-25T15:00:00+09:00"
-      },
-      {
-        "name": "齐河县齐河县第一中学",
-        "full_name": "Qihe County No. 1 Middle School, Qihe County (齐河县齐河县第一中学)",
-        "lat": 36.781666,
-        "lon": 116.741388,
-        "aqi": 109,
-        "level": "轻度污染",
-        "uid": 10367,
-        "time": "2026-11-25T16:00:00+09:00"
       },
       {
         "name": "乐陵市乐陵市政府",
@@ -1693,14 +1685,14 @@
         "time": "2026-11-25T15:00:00+09:00"
       },
       {
-        "name": "济南省种子仓库",
-        "full_name": "Provincial Seed Warehouse, Jinan (济南省种子仓库)",
-        "lat": 36.68527778,
-        "lon": 117.0602778,
+        "name": "济南山东鲁能",
+        "full_name": "Shāndōng lǔnéng, Jinan (济南山东鲁能)",
+        "lat": 36.59277778,
+        "lon": 117.0241667,
         "aqi": 107,
         "level": "轻度污染",
-        "uid": 506,
-        "time": "2026-11-25T16:00:00+09:00"
+        "uid": 501,
+        "time": "2026-11-25T14:00:00+09:00"
       },
       {
         "name": "济南山东经济学院",
@@ -1713,14 +1705,14 @@
         "time": "2026-11-25T14:00:00+09:00"
       },
       {
-        "name": "济南山东鲁能",
-        "full_name": "Shāndōng lǔnéng, Jinan (济南山东鲁能)",
-        "lat": 36.59277778,
-        "lon": 117.0241667,
+        "name": "济南省种子仓库",
+        "full_name": "Provincial Seed Warehouse, Jinan (济南省种子仓库)",
+        "lat": 36.68527778,
+        "lon": 117.0602778,
         "aqi": 107,
         "level": "轻度污染",
-        "uid": 501,
-        "time": "2026-11-25T14:00:00+09:00"
+        "uid": 506,
+        "time": "2026-11-25T16:00:00+09:00"
       },
       {
         "name": "沧州市沧县城建局",
@@ -1743,16 +1735,6 @@
         "time": "2026-11-25T14:00:00+09:00"
       },
       {
-        "name": "衡水市电机北厂",
-        "full_name": "Electrical Machine North Factory, Hengshui (衡水市电机北厂)",
-        "lat": 37.758,
-        "lon": 115.695,
-        "aqi": 102,
-        "level": "轻度污染",
-        "uid": 693,
-        "time": "2026-11-25T15:00:00+09:00"
-      },
-      {
         "name": "陵城区陵城陵县一中",
         "full_name": "Lingcheng Lingxian No.1 Middle School, Lingcheng District (陵城区陵城陵县一中)",
         "lat": 37.348056,
@@ -1761,16 +1743,6 @@
         "level": "轻度污染",
         "uid": 10360,
         "time": "2026-11-25T15:00:00+09:00"
-      },
-      {
-        "name": "济南兰翔技校",
-        "full_name": "Lanxiang technical school, Jinan (济南兰翔技校)",
-        "lat": 36.70027778,
-        "lon": 116.9477778,
-        "aqi": 102,
-        "level": "轻度污染",
-        "uid": 504,
-        "time": "2026-11-25T16:00:00+09:00"
       },
       {
         "name": "济南",
@@ -1783,6 +1755,26 @@
         "time": "2026-11-25T16:00:00+09:00"
       },
       {
+        "name": "济南兰翔技校",
+        "full_name": "Lanxiang technical school, Jinan (济南兰翔技校)",
+        "lat": 36.70027778,
+        "lon": 116.9477778,
+        "aqi": 102,
+        "level": "轻度污染",
+        "uid": 504,
+        "time": "2026-11-25T16:00:00+09:00"
+      },
+      {
+        "name": "衡水市电机北厂",
+        "full_name": "Electrical Machine North Factory, Hengshui (衡水市电机北厂)",
+        "lat": 37.758,
+        "lon": 115.695,
+        "aqi": 102,
+        "level": "轻度污染",
+        "uid": 693,
+        "time": "2026-11-25T15:00:00+09:00"
+      },
+      {
         "name": "衡水",
         "full_name": "Hengshui (衡水)",
         "lat": 37.73892,
@@ -1790,6 +1782,16 @@
         "aqi": 102,
         "level": "轻度污染",
         "uid": 1464,
+        "time": "2026-11-25T15:00:00+09:00"
+      },
+      {
+        "name": "夏津县夏津宾馆",
+        "full_name": "Xiajin Hotel, Xiajin County (夏津县夏津宾馆)",
+        "lat": 36.952799,
+        "lon": 116.004522,
+        "aqi": 99,
+        "level": "良",
+        "uid": 10371,
         "time": "2026-11-25T15:00:00+09:00"
       },
       {
@@ -1803,13 +1805,13 @@
         "time": "2026-11-25T14:00:00+09:00"
       },
       {
-        "name": "夏津县夏津宾馆",
-        "full_name": "Xiajin Hotel, Xiajin County (夏津县夏津宾馆)",
-        "lat": 36.952799,
-        "lon": 116.004522,
-        "aqi": 99,
+        "name": "沧州市河北水利电力学院",
+        "full_name": "Hebei Institute of Water Conservancy and Electric Power, Cangzhou (沧州市河北水利电力学院)",
+        "lat": 38.295,
+        "lon": 116.801,
+        "aqi": 97,
         "level": "良",
-        "uid": 10371,
+        "uid": 9758,
         "time": "2026-11-25T15:00:00+09:00"
       },
       {
@@ -1820,16 +1822,6 @@
         "aqi": 97,
         "level": "良",
         "uid": 10389,
-        "time": "2026-11-25T15:00:00+09:00"
-      },
-      {
-        "name": "沧州市河北水利电力学院",
-        "full_name": "Hebei Institute of Water Conservancy and Electric Power, Cangzhou (沧州市河北水利电力学院)",
-        "lat": 38.295,
-        "lon": 116.801,
-        "aqi": 97,
-        "level": "良",
-        "uid": 9758,
         "time": "2026-11-25T15:00:00+09:00"
       },
       {
@@ -1853,16 +1845,6 @@
         "time": "2026-11-25T14:00:00+09:00"
       },
       {
-        "name": "邯郸市邱县政府",
-        "full_name": "Qiu County Government, Handan (邯郸市邱县政府)",
-        "lat": 36.811,
-        "lon": 115.181,
-        "aqi": 89,
-        "level": "良",
-        "uid": 5619,
-        "time": "2026-11-25T14:00:00+09:00"
-      },
-      {
         "name": "高新区商职学院",
         "full_name": "Business college, High-tech zone (高新区商职学院)",
         "lat": 36.635446,
@@ -1883,13 +1865,23 @@
         "time": "2026-11-25T14:00:00+09:00"
       },
       {
-        "name": "沧州市沧县黄递铺乡政府",
-        "full_name": "Huangdipu Township Government, Jixian County, Cangzhou (沧州市沧县黄递铺乡政府)",
-        "lat": 38.234,
-        "lon": 116.673,
+        "name": "邯郸市邱县政府",
+        "full_name": "Qiu County Government, Handan (邯郸市邱县政府)",
+        "lat": 36.811,
+        "lon": 115.181,
+        "aqi": 89,
+        "level": "良",
+        "uid": 5619,
+        "time": "2026-11-25T14:00:00+09:00"
+      },
+      {
+        "name": "济南山东建筑大学",
+        "full_name": "Shandong Architecture University, Jinan (济南山东建筑大学)",
+        "lat": 36.68138889,
+        "lon": 117.1858333,
         "aqi": 87,
         "level": "良",
-        "uid": 9759,
+        "uid": 507,
         "time": "2026-11-25T14:00:00+09:00"
       },
       {
@@ -1903,23 +1895,13 @@
         "time": "2026-11-25T16:00:00+09:00"
       },
       {
-        "name": "济南山东建筑大学",
-        "full_name": "Shandong Architecture University, Jinan (济南山东建筑大学)",
-        "lat": 36.68138889,
-        "lon": 117.1858333,
+        "name": "沧州市沧县黄递铺乡政府",
+        "full_name": "Huangdipu Township Government, Jixian County, Cangzhou (沧州市沧县黄递铺乡政府)",
+        "lat": 38.234,
+        "lon": 116.673,
         "aqi": 87,
         "level": "良",
-        "uid": 507,
-        "time": "2026-11-25T14:00:00+09:00"
-      },
-      {
-        "name": "衡水市景县交通局",
-        "full_name": "Jingxian Transportation Bureau, Hengshui (衡水市景县交通局)",
-        "lat": 37.691,
-        "lon": 116.234,
-        "aqi": 85,
-        "level": "良",
-        "uid": 9786,
+        "uid": 9759,
         "time": "2026-11-25T14:00:00+09:00"
       },
       {
@@ -1930,6 +1912,16 @@
         "aqi": 85,
         "level": "良",
         "uid": 10252,
+        "time": "2026-11-25T14:00:00+09:00"
+      },
+      {
+        "name": "衡水市景县交通局",
+        "full_name": "Jingxian Transportation Bureau, Hengshui (衡水市景县交通局)",
+        "lat": 37.691,
+        "lon": 116.234,
+        "aqi": 85,
+        "level": "良",
+        "uid": 9786,
         "time": "2026-11-25T14:00:00+09:00"
       },
       {
@@ -2003,7 +1995,7 @@
         "time": "2026-11-25T15:00:00+09:00"
       }
     ],
-    "generated_at": "2026-11-25T15:56:11+08:00",
+    "generated_at": "2026-11-25T16:03:47+08:00",
     "region": {
       "available": true,
       "level": "差",
@@ -2018,8 +2010,8 @@
       },
       "trend": {
         "direction": "worsening",
-        "delta_pct": 46.6,
-        "pm25_24h": 88.1
+        "delta_pct": 49.9,
+        "pm25_24h": 89.6
       },
       "cities": [
         {
@@ -2031,8 +2023,8 @@
           "aqi": 82,
           "level": "良",
           "time": "2026-11-25 14:00:00",
-          "pm25_now": 150.3,
-          "pm25_24h": 196.3
+          "pm25_now": 154.0,
+          "pm25_24h": 198.2
         },
         {
           "key": "tianjin",
@@ -2043,8 +2035,8 @@
           "aqi": 160,
           "level": "中度污染",
           "time": "2026-11-25 13:00:00",
-          "pm25_now": 59.4,
-          "pm25_24h": 179.0
+          "pm25_now": 60.7,
+          "pm25_24h": 181.6
         },
         {
           "key": "langfang",
@@ -2055,8 +2047,8 @@
           "aqi": 129,
           "level": "轻度污染",
           "time": "2026-11-25 13:00:00",
-          "pm25_now": 45.4,
-          "pm25_24h": 118.4
+          "pm25_now": 46.7,
+          "pm25_24h": 120.1
         },
         {
           "key": "tangshan",
@@ -2067,8 +2059,8 @@
           "aqi": 119,
           "level": "轻度污染",
           "time": "2026-11-25 13:00:00",
-          "pm25_now": 39.4,
-          "pm25_24h": 111.1
+          "pm25_now": 41.0,
+          "pm25_24h": 112.3
         },
         {
           "key": "baoding",
@@ -2079,8 +2071,8 @@
           "aqi": 76,
           "level": "良",
           "time": "2026-11-25 14:00:00",
-          "pm25_now": 41.8,
-          "pm25_24h": 92.8
+          "pm25_now": 42.6,
+          "pm25_24h": 94.6
         },
         {
           "key": "shijiazhuang",
@@ -2090,8 +2082,8 @@
           "aqi": 93,
           "level": "良",
           "time": "2026-11-25 14:00:00",
-          "pm25_now": 40.8,
-          "pm25_24h": 52.6
+          "pm25_now": 41.2,
+          "pm25_24h": 54.1
         },
         {
           "key": "hengshui",
@@ -2101,8 +2093,8 @@
           "aqi": 102,
           "level": "轻度污染",
           "time": "2026-11-25 14:00:00",
-          "pm25_now": 31.3,
-          "pm25_24h": 45.9
+          "pm25_now": 31.6,
+          "pm25_24h": 47.4
         },
         {
           "key": "cangzhou",
@@ -2112,8 +2104,8 @@
           "aqi": 112,
           "level": "轻度污染",
           "time": "2026-11-25 14:00:00",
-          "pm25_now": 33.3,
-          "pm25_24h": 49.1
+          "pm25_now": 33.9,
+          "pm25_24h": 50.8
         },
         {
           "key": "xingtai",
@@ -2123,8 +2115,8 @@
           "aqi": 42,
           "level": "优",
           "time": "2026-11-25 13:00:00",
-          "pm25_now": 28.1,
-          "pm25_24h": 35.1
+          "pm25_now": 28.3,
+          "pm25_24h": 36.4
         },
         {
           "key": "handan",
@@ -2134,8 +2126,8 @@
           "aqi": 80,
           "level": "良",
           "time": "2026-11-25 14:00:00",
-          "pm25_now": 40.0,
-          "pm25_24h": 43.6
+          "pm25_now": 40.4,
+          "pm25_24h": 44.2
         },
         {
           "key": "jinan",
@@ -2145,13 +2137,13 @@
           "aqi": 102,
           "level": "轻度污染",
           "time": "2026-11-25 15:00:00",
-          "pm25_now": 67.2,
-          "pm25_24h": 45.7
+          "pm25_now": 68.2,
+          "pm25_24h": 46.1
         }
       ],
       "note": "区域 11 城中位 AQI 102，1 城达中度污染以上（北京 82）",
       "source": "WAQI 城市实况 + Open-Meteo 区域 PM2.5 预报",
-      "generated_at": "2026-11-25T15:56:12+08:00"
+      "generated_at": "2026-11-25T16:03:48+08:00"
     },
     "beijing": {
       "available": true,
@@ -2340,7 +2332,7 @@
       "total": 23,
       "source": "北京市应急管理局 · 预警信息",
       "url": "https://yjglj.beijing.gov.cn/col/col2472/index.html",
-      "generated_at": "2026-11-25T15:56:14+08:00",
+      "generated_at": "2026-11-25T16:03:52+08:00",
       "history": {
         "available": true,
         "pairs": [
@@ -2409,7 +2401,7 @@
         },
         "window_days": 3,
         "note": "共 4 次与德州启动日相差 ≤3 天的可比过程（两端齐全 3 次）",
-        "generated_at": "2026-11-25T15:56:58+08:00"
+        "generated_at": "2026-11-25T16:04:17+08:00"
       },
       "signal": "both_closed",
       "signal_label": "两地均已解除",
@@ -2520,7 +2512,7 @@
   "analysis": {
     "engine": "rules",
     "headline": "应急响应已终止，供应商限产要求解除",
-    "summary_md": "### 今日态势\n德州市于 **2026-11-17** 发布公告《关于终止重污染天气应急响应的通知-重污染应急〔2026〕26号》，预警级别为 **橙色预警（Ⅱ级应急响应）**，生效时间 2026-11-17 18:00。当前市区 AQI **137（轻度污染）**，PM2.5 105 μg/m³，风速 18.1 m/s，扩散条件**好**（风速 >4m/s，扩散条件转好，应急响应可能提前解除）。\n区域联动（11 城）：中位 AQI 102，1 城达中度污染以上，北京 82（良），未来 24h 转差，区域仍在大范围污染。\n北京官方：橙色预警 2026-11-09 启动、2026-11-15 解除（持续 6 天）；两地均已解除；按历史 3 次可比过程（德州通常在北京解除后 2 天解除）推算 2026-11-17（已到期）。\n### 对供应商的影响\n本次预警级别未触发在监控供应商的强制减排措施，生产不受影响。\n\n以上工序与减产比例全部取自《固定源应急减排措施清单》，不是按经验估算；红色预警升级时同一份清单里对应的是全工序停产。\n### 历史规律\n栏目共识别出 26 次「启动→终止」完整的同类响应，中位持续 **4.5 天**（均值 5.4 天，P75 7 天，范围 2–12 天）。本次响应已终止，不再适用时长推算。",
+    "summary_md": "### 今日态势\n德州市于 **2026-11-17** 发布公告《关于终止重污染天气应急响应的通知-重污染应急〔2026〕26号》，预警级别为 **橙色预警（Ⅱ级应急响应）**，生效时间 2026-11-17 18:00。当前市区 AQI **137（轻度污染）**，PM2.5 105 μg/m³，风速 18.0 m/s，扩散条件**好**（风速 >4m/s，扩散条件转好，应急响应可能提前解除）。\n区域联动（11 城）：中位 AQI 102，1 城达中度污染以上，北京 82（良），未来 24h 转差，区域仍在大范围污染。\n北京官方：橙色预警 2026-11-09 启动、2026-11-15 解除（持续 6 天）；两地均已解除；按历史 3 次可比过程（德州通常在北京解除后 2 天解除）推算 2026-11-17（已到期）。\n### 对供应商的影响\n本次预警级别未触发在监控供应商的强制减排措施，生产不受影响。\n\n以上工序与减产比例全部取自《固定源应急减排措施清单》，不是按经验估算；红色预警升级时同一份清单里对应的是全工序停产。\n### 历史规律\n栏目共识别出 26 次「启动→终止」完整的同类响应，中位持续 **4.5 天**（均值 5.4 天，P75 7 天，范围 2–12 天）。本次响应已终止，不再适用时长推算。",
     "counter_hoarding": [
       "限产约束解除，通知供应商恢复正常交付，并核对前期欠交与在途数量"
     ],
@@ -2532,7 +2524,7 @@
     "i18n": {
       "en": {
         "headline": "Emergency response terminated — production restrictions lifted",
-        "summary_md": "### Situation today\nDezhou published “关于终止重污染天气应急响应的通知-重污染应急〔2026〕26号” on **2026-11-17**, alert level **Orange alert (Ⅱ级)**, effective 2026-11-17 18:00. City AQI **137**, PM2.5 105 μg/m³, wind 18.1 m/s, dispersion **good**.\nRegion (11 cities): median AQI 102, 1 at moderate pollution or worse, Beijing 82, worsening over the next 24h — still polluted across the region.\nBeijing official: 橙色预警 from 2026-11-09 to 2026-11-15 (6 days) — Both Beijing and Dezhou have lifted their alerts; across 3 comparable episodes Dezhou ended a median of 2 days after Beijing, pointing to 2026-11-17 (already due).\n### Impact on suppliers\nThis alert level does not trigger mandatory measures for any monitored supplier.\n\nAll processes and cut percentages come from the official fixed-source reduction list, not from rules of thumb; a red alert turns the same rows into a full shutdown.\n### Historical pattern\nThe notice column yields 26 complete start→terminate episodes; median **4.5 days** (mean 5.4, P75 7, range 2–12). The response has already been terminated, so no further duration estimate applies.",
+        "summary_md": "### Situation today\nDezhou published “关于终止重污染天气应急响应的通知-重污染应急〔2026〕26号” on **2026-11-17**, alert level **Orange alert (Ⅱ级)**, effective 2026-11-17 18:00. City AQI **137**, PM2.5 105 μg/m³, wind 18.0 m/s, dispersion **good**.\nRegion (11 cities): median AQI 102, 1 at moderate pollution or worse, Beijing 82, worsening over the next 24h — still polluted across the region.\nBeijing official: 橙色预警 from 2026-11-09 to 2026-11-15 (6 days) — Both Beijing and Dezhou have lifted their alerts; across 3 comparable episodes Dezhou ended a median of 2 days after Beijing, pointing to 2026-11-17 (already due).\n### Impact on suppliers\nThis alert level does not trigger mandatory measures for any monitored supplier.\n\nAll processes and cut percentages come from the official fixed-source reduction list, not from rules of thumb; a red alert turns the same rows into a full shutdown.\n### Historical pattern\nThe notice column yields 26 complete start→terminate episodes; median **4.5 days** (mean 5.4, P75 7, range 2–12). The response has already been terminated, so no further duration estimate applies.",
         "counter_hoarding": [
           "Restrictions are lifted — ask suppliers to resume normal delivery and reconcile outstanding orders"
         ],
@@ -2542,14 +2534,15 @@
         ],
         "outlook": "The response has been terminated — restrictions are lifted; watch the column for the next start notice and keep the weekly check."
       }
-    }
+    },
+    "refreshed_at": "2026-11-25T16:04:17+08:00"
   },
   "prediction": {
     "available": true,
     "predicted_days": 9,
     "predicted_end": null,
     "elapsed_days": 7,
-    "as_of": "2026-11-25T15:56+08:00",
+    "as_of": "2026-11-25T16:04+08:00",
     "conditional": true,
     "conditional_samples": 6,
     "remaining_days": 1.1,
@@ -2719,16 +2712,16 @@
       "city_status": "watch"
     },
     "stations": {
-      "total": 73,
-      "exceed_hot": 3,
-      "exceed_100": 52,
-      "share": 4.1
+      "total": 72,
+      "exceed_hot": 2,
+      "exceed_100": 51,
+      "share": 2.8
     },
     "samples": {
       "positive_days": 54,
       "history_days": 1574
     },
-    "generated_at": "2026-11-25T15:56:37+08:00"
+    "generated_at": "2026-11-25T16:04:17+08:00"
   },
   "re_alert": {
     "available": true,
@@ -2764,7 +2757,7 @@
         "points": 15.0
       }
     ],
-    "generated_at": "2026-11-25T15:56:37+08:00"
+    "generated_at": "2026-11-25T16:04:17+08:00"
   },
   "sources": {
     "notice": {
